@@ -1,0 +1,37 @@
+MOV #2
+STA #10
+MOV #3
+STA #11
+MOV #4
+STA #12
+MOV #3
+STA #53
+MOV #10
+STA #51
+loop: LDA #52
+LDR X, #53
+CMP X
+BRZ end
+INC
+STA #52
+LDR Y, #51
+LDA Y
+PSH Y
+PSH A
+JMP square
+MOV Y
+INC
+STA #51
+BRA loop
+end: LDA #10
+LDA #11
+LDA #12
+HLT
+square: POP X
+POP Y
+MOV Y
+MUL Y
+POP Y
+STA Y
+PSH X
+RET
